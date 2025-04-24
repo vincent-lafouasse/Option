@@ -18,8 +18,8 @@ class Option {
         BadOptionalAccess() : BadOptionalAccess("Direction vector is null") {}
     };
 
-    Option() : self(None{}), some(false) {}
-    Option(T value) : self(value), some(true) {}
+    Option() : none(), some(false) {}
+    Option(T value) : val(value), some(true) {}
 
     // checked, throws on bad access
     const T& value() const {
@@ -32,23 +32,23 @@ class Option {
         if (!this->some) {
             throw BadOptionalAccess();
         }
-        return this->self.val;
+        return this->val;
     }
 
     // unchecked, UB on bad access
     const T& operator*() const { return this->self.val; }
-    T& operator*() { return this->self.val; }
+    T& operator*() { return this->val; }
 
     const T& value_or(const T& defaultValue) const {
         if (this->some) {
-            return this->self.val;
+            return this->val;
         } else {
             return defaultValue;
         }
     }
     T& value_or(T& defaultValue) {
         if (this->some) {
-            return this->self.val;
+            return this->val;
         } else {
             return defaultValue;
         }
@@ -60,7 +60,7 @@ class Option {
     union {
         T val;
         None none;
-    } self;
+    };
     bool some;
 };
 
