@@ -15,6 +15,7 @@ int main(void) {
     try {
         none.value();
     } catch (const poss::Option<int>::BadOptionalAccess& e) {
+        // success
     }
     assert(none.value_or(69) == 69);
 
