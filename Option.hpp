@@ -35,7 +35,13 @@ class Option {
     bool some;
 
 public:
-   class BadOptionalAccess: std::runtime_error {
+   class BadOptionalAccess: public std::runtime_error {
+      // might add more runtime information about failing state later
+   public:
+      explicit BadOptionalAccess(const char* what)
+      : runtime_error(what) {}
+      BadOptionalAccess()
+      : BadOptionalAccess("Direction vector is null") {}
 
    };
 };
