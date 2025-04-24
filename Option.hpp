@@ -25,6 +25,9 @@ class Option {
     const T& value_or(const T& defaultValue) const;
     T& value_or(T& defaultValue);
 
+    bool is_some() const { return this->some; }
+    bool is_none() const { return !this->some; }
+
     void reset();
 
    private:
