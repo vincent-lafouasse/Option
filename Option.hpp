@@ -7,51 +7,23 @@ namespace poss {
 template <typename T>
 class Option {
    public:
-    using type_value = T;
+    typedef T type_value;
 
     class None {};
 
-    class BadOptionalAccess : public std::runtime_error {
-        // might add more runtime information about failing state later
-       public:
-        BadOptionalAccess() : std::runtime_error("Direction vector is null") {}
-    };
-
-    Option() : none(), some(false) {}
-    Option(T value) : val(value), some(true) {}
+    Option();
+    Option(T value);
 
     // checked, throws on bad access
-    const T& value() const {
-        if (!this->some) {
-            throw BadOptionalAccess();
-        }
-        return this->val;
-    }
-    T& value() {
-        if (!this->some) {
-            throw BadOptionalAccess();
-        }
-        return this->val;
-    }
+    const T& value() const;
+    T& value();
 
     // unchecked, UB on bad access
-    const T& operator*() const { return this->val; }
-    T& operator*() { return this->val; }
+    const T& operator*() const;
+    T& operator*();
 
-    const T& value_or(const T& defaultValue) const {
-        if (this->some) {
-            return this->val;
-        } else {
-            return defaultValue;
-        }
-    }
-    T& value_or(T& defaultValue) {
-        if (this->some) {
-            return this->val;
-        } else {
-            return defaultValue;
-        }
-    }
+    const T& value_or(const T& defaultValue) const;
+    T& value_or(T& defaultValue);
 
     void reset();
 
@@ -61,6 +33,15 @@ class Option {
         None none;
     };
     bool some;
+
+public:
+    class BadOptionalAccess : public std::runtime_error {
+        // might add more runtime information about failing state later
+       public:
+        BadOptionalAccess();
+    };
 };
+
+#include "Option.inc.hpp"
 
 }  // namespace poss
