@@ -26,7 +26,7 @@ class Option {
         if (!this->some) {
             throw BadOptionalAccess();
         }
-        return this->self.val;
+        return this->val;
     }
     T& value() {
         if (!this->some) {
@@ -36,7 +36,7 @@ class Option {
     }
 
     // unchecked, UB on bad access
-    const T& operator*() const { return this->self.val; }
+    const T& operator*() const { return this->val; }
     T& operator*() { return this->val; }
 
     const T& value_or(const T& defaultValue) const {
