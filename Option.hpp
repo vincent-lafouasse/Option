@@ -11,14 +11,14 @@ class Option {
 
     class None {};
 
-    Option(): self(None{}), some(false) {}
-    Option(T value): self(value), some(true) {}
+    Option() : self(None{}), some(false) {}
+    Option(T value) : self(value), some(true) {}
 
     // checked, throws on bad access
     const T& value() const;
     T& value();
 
-   // unchecked, UB on bad access
+    // unchecked, UB on bad access
     const T& operator*() const;
     T& operator*();
 
@@ -34,16 +34,13 @@ class Option {
     } self;
     bool some;
 
-public:
-   class BadOptionalAccess: public std::runtime_error {
-      // might add more runtime information about failing state later
    public:
-      explicit BadOptionalAccess(const char* what)
-      : runtime_error(what) {}
-      BadOptionalAccess()
-      : BadOptionalAccess("Direction vector is null") {}
-
-   };
+    class BadOptionalAccess : public std::runtime_error {
+        // might add more runtime information about failing state later
+       public:
+        explicit BadOptionalAccess(const char* what) : runtime_error(what) {}
+        BadOptionalAccess() : BadOptionalAccess("Direction vector is null") {}
+    };
 };
 
 }  // namespace poss
