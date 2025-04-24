@@ -11,6 +11,13 @@ class Option {
 
     class None {};
 
+    class BadOptionalAccess : public std::runtime_error {
+        // might add more runtime information about failing state later
+       public:
+        explicit BadOptionalAccess(const char* what) : runtime_error(what) {}
+        BadOptionalAccess() : BadOptionalAccess("Direction vector is null") {}
+    };
+
     Option() : self(None{}), some(false) {}
     Option(T value) : self(value), some(true) {}
 
@@ -33,14 +40,6 @@ class Option {
         None none;
     } self;
     bool some;
-
-   public:
-    class BadOptionalAccess : public std::runtime_error {
-        // might add more runtime information about failing state later
-       public:
-        explicit BadOptionalAccess(const char* what) : runtime_error(what) {}
-        BadOptionalAccess() : BadOptionalAccess("Direction vector is null") {}
-    };
 };
 
 }  // namespace poss
