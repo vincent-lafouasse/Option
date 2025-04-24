@@ -14,8 +14,7 @@ class Option {
     class BadOptionalAccess : public std::runtime_error {
         // might add more runtime information about failing state later
        public:
-        explicit BadOptionalAccess(const char* what) : runtime_error(what) {}
-        BadOptionalAccess() : BadOptionalAccess("Direction vector is null") {}
+        BadOptionalAccess() : std::runtime_error("Direction vector is null") {}
     };
 
     Option() : none(), some(false) {}
