@@ -34,7 +34,7 @@ class Option {
     };
     bool some;
 
-public:
+   public:
     class BadOptionalAccess : public std::runtime_error {
         // might add more runtime information about failing state later
        public:
