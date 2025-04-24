@@ -6,9 +6,17 @@
 int main(void) {
     poss::Option<int> some(420);
     assert(some.is_some());
+    assert(*some == 420);
+    assert(some.value() == 420);
+    assert(some.value_or(69) == 420);
 
     poss::Option<int> none;
     assert(none.is_none());
+    try {
+        none.value();
+    } catch (const poss::Option<int>::BadOptionalAccess& e) {
+    }
+    assert(none.value_or(69) == 69);
 
     assert(typeid(poss::Option<int>::type_value) == typeid(int));
 
