@@ -11,10 +11,10 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_library(possOption INTERFACE)
 target_sources(possOption INTERFACE
-	Option.hpp
+	./include/poss/Option.hpp
 )
 target_include_directories(possOption INTERFACE
-	.
+	./include
 )
 
 add_executable(test)
