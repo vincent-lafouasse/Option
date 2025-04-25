@@ -2,6 +2,7 @@
 
 #include <cassert>
 #include <iostream>
+#include <typeinfo>
 
 int main(void) {
     poss::Option<int> some(420);
