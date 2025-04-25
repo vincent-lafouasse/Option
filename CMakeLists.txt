@@ -13,10 +13,13 @@ add_library(possOption INTERFACE)
 target_sources(possOption INTERFACE
 	Option.hpp
 )
+target_include_directories(possOption INTERFACE
+	.
+)
 
 add_executable(test)
 target_sources(test PRIVATE
-	main.cpp
+	test/main.cpp
 )
 target_link_libraries(test PUBLIC
 	possOption
