@@ -1,0 +1,27 @@
+name: Test CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: install dependencies
+      run: apt-get install cmake valgrind
+      
+    - name: build
+      run: cmake -B build -G Ninja -S . && cmake --build build
+      
+    - name: run tests
+      run: ./build/test
+      
+    - name: run tests with memcheck
+      run: valgrind ./build/test
