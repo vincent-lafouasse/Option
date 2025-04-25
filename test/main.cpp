@@ -25,5 +25,14 @@ int main() {
 
     assert(typeid(poss::Option<int>::type_value) == typeid(int));
 
+    /*
+    poss::Option<std::string> yes_string("what is up");
+    assert(yes_string.is_some());
+    assert(*yes_string == "what is up");
+
+    poss::Option<std::string> no_string;
+    assert(no_string.is_none());
+    */
+
     std::cout << "All tests ok" << std::endl;
 }
