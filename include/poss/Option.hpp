@@ -12,7 +12,7 @@ class Option {
     class None {};
 
     Option();
-    Option(T value);
+    Option(T value);  // NOLINT(*-explicit-constructor)
 
     // checked, throws on bad access
     const T& value() const;
@@ -28,7 +28,15 @@ class Option {
     bool is_some() const { return this->some; }
     bool is_none() const { return !this->some; }
 
-    void reset();
+    void reset() {
+        if (!this->some) {
+            return;
+        }
+
+        this->val.~T();
+        this->none = None();
+        this->some = false;
+    }
 
    private:
     union {

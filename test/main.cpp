@@ -10,6 +10,9 @@ int main(void) {
     assert(some.value() == 420);
     assert(some.value_or(69) == 420);
 
+    some.reset();
+    assert(some.is_none());
+
     poss::Option<int> none;
     assert(none.is_none());
     try {
