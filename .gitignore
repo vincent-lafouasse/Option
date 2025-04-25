@@ -3,3 +3,4 @@
 a.out
 compile_commands.json
 build
+.cache
