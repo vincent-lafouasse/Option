@@ -4,7 +4,7 @@
 #include <iostream>
 #include <typeinfo>
 
-int main(void) {
+int main() {
     poss::Option<int> some(420);
     assert(some.is_some());
     assert(*some == 420);
